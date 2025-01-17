@@ -1,0 +1,28 @@
+isAllowed: true
+age: 18
+
+# the config is a dictionary that contains a list of objects
+#  eg => [{name : "test", description : "test", config_type : "test"}]
+config:
+  - name: "test"
+    description: "test config"
+    config_type: "test"
+  - name: "test2"
+    description: "test2 config"
+    config_type: "dev"
+  - name: "test3"
+    description: "test3 config"
+    config_type: "prod"
+
+# the user object contains properties like name, age, and roles
+users:
+  - name: "John Doe"
+    age: 30
+    roles:
+      - admin
+      - user
+
+  - name: "Hasan Doe"
+    age: 30
+    roles:
+      - user
