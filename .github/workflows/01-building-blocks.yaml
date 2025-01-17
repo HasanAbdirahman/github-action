@@ -12,9 +12,9 @@ jobs:
   echo-goodbye:
     runs-on: ubuntu-latest
     steps:
-      - name: Failed state
+      - name: Succeed state
         run: | # this line is used for multi-line commands
           echo "Hello World!"
-          exit 1
+          exit 0
       - name: say goodbye
         run: echo "Goodbye World!"
