@@ -9,18 +9,14 @@ jobs:
     steps:
       - name: Show OS
         run: "This job is running on an ${{ runner.os }} runner."
-
-
-jobs:
   windows-echo:
     runs-on: windows-latest
     steps:
       - name: Show OS
         run: "This job is running on an ${{ runner.os }} runner."
 
-jobs:
   mac0s-echo:
-     runs-on: mac-latest
-     steps:
+    runs-on: mac-latest
+    steps:
       - name: Show OS
         run: "This job is running on an ${{ runner.os }} runner."
