@@ -8,15 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show OS
-        run: "This job is running on an ${{ runner.os }} runner."
+        run: "This job is running on a ${{ runner.os }} runner."
   windows-echo:
     runs-on: windows-latest
     steps:
       - name: Show OS
-        run: "This job is running on an ${{ runner.os }} runner."
+        shell: bash
+        run: "This job is running on a ${{ runner.os }} runner."
 
   mac0s-echo:
     runs-on: mac-latest
     steps:
       - name: Show OS
-        run: "This job is running on an ${{ runner.os }} runner."
+        shell: bash
+        run: "This job is running on a ${{ runner.os }} runner."
