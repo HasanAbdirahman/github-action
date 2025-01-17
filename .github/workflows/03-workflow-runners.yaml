@@ -1,34 +1,6 @@
-# name: 03 - Workflow Runners
-
-# on:
-#   push:
-
-# jobs:
-#   ubuntu-echo:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Show OS
-#         run: "This job is running on a ${{ runner.os }} runner."
-#   windows-echo:
-#     runs-on: windows-latest
-#     steps:
-#       - name: Show OS
-#         shell: bash
-#         run: "This job is running on a ${{ runner.os }} runner."
-
-#   mac0s-echo:
-#     runs-on: mac-latest
-#     steps:
-#       - name: Show OS
-#         shell: bash
-#         run: "This job is running on a ${{ runner.os }} runner."
-
-# See 03-workflow-runners/README.md for more information
-# about the different runners for GitHub Actions.
-
 name: 03 - Workflow Runners
 
-on: push
+on: workflow_dispatch
 
 jobs:
   ubuntu-echo:
