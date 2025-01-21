@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "[debug ] Print start-up data"
+        # not must we use the curly brackets
         if: ${{inputs.debug}}
         run: |
           echo "Triggered by ${{github.event_name}}"
