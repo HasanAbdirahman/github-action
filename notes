@@ -1,1 +1,8 @@
 Remember yaml is a dictionary
+
+organization variables can be overwritten by repository variables
+and the environment variables can also overwrite the repository and organization variables
+
+the workspace environment variables can be overwritten by jobs environment variables and steps environment variables can overwrite both the workspace and the job environment variables
+
+Remember that workspace environment variables can be accessed in the whole workspace but the job environment variables can only be accessed in the steps environment it has and if you create a new job that environment variables cannot be accessed. Same with the step environment variables which can only accessed in the steps only but when you create a new job that environment variables cannot be accessed
