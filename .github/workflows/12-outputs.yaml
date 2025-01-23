@@ -35,7 +35,15 @@ jobs:
           echo "status=${{inputs.status}}" >> "$GITHUB_OUTPUT"
           echo "output1 = value1" >> "$GITHUB_OUTPUT"
           echo "output2 = value2" >> "$GITHUB_OUTPUT"
-          echo "mistake = true" > $GITHUB_OUTPUT
+          echo "mistake = true" > $GITHUB_OUTPUT  # this is a mistake remember we override the GITHUB_OUTPUT
+          cat "$GITHUB_OUTPUT"
+
+      - name:
+          Correcting Build Mistake
+          # the GITHUB_OUTPUT here is going to be
+          # different from the ones in the jobs and other steps
+        run: |
+          echo "mistake = true" > $GITHUB_OUTPUT  
           cat "$GITHUB_OUTPUT"
 
   deploy:
