@@ -1,4 +1,9 @@
 # YOU SHOULD REALLY REVISE THIS YAML OUTPUT
+# how do we name the outputs in the build job:
+#  ${{steps.<<step id u want>>.outputs.<<output Key>>}}
+# when you want to call the outputs in another job eg deploy
+#  ${{needs.<<job-name>>.outputs.<<output name>>}}
+
 name: 12 - Working with Outputs
 on:
   workflow_dispatch:
@@ -15,13 +20,24 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       build-status: ${{ steps.step-build.outputs.status }}
+      output_1: ${{steps.step-build.outputs.output1}}
+      output_2: ${{steps.step-build.outputs.output2}}
     steps:
       - name: Print GITHUB_OUTPUT path
         run: echo "$GITHUB_OUTPUT"
 
       - name: Build
         id: step-build
-        run: echo "status=${{inputs.status}}" >> "$GITHUB_OUTPUT"
+        run: |
+          # rememeber GITHUB_OUTPUT in the job is
+          # different from the step one cause they will have different hash
+          cat "$GITHUB_OUTPUT" 
+          echo "status=${{inputs.status}}" >> "$GITHUB_OUTPUT"
+          echo "output1 = value1" >> "$GITHUB_OUTPUT"
+          echo "output2 = value2" >> "$GITHUB_OUTPUT"
+          echo "mistake = true" > $GITHUB_OUTPUT
+          cat "$GITHUB_OUTPUT"
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -29,3 +45,5 @@ jobs:
     steps:
       - name: Deploy
         run: echo "Deploying..."
+      - name: Output Deploy
+        run: echo "${{needs.build.outputs.output_1}}"
