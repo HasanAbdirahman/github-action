@@ -41,6 +41,8 @@ jobs:
         color: [red, green]
         shape: [circle, square]
         size: [small, large]
+        # we can add a new item eg opacity in the include: it will be
+        # added to the matrix, but not the new items added to the includes
         include:
           - color: red
             opacity: 75
@@ -52,6 +54,9 @@ jobs:
           - color: green
             shape: circle
             size: medium
+        # exclude option is processed befor the include key
+        # that means new items added to the include cannot be
+        #  excluded in the exclude key
         exclude:
           - color: green
             shape: circle
