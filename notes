@@ -6,3 +6,17 @@ and the environment variables can also overwrite the repository and organization
 the workspace environment variables can be overwritten by jobs environment variables and steps environment variables can overwrite both the workspace and the job environment variables
 
 Remember that workspace environment variables can be accessed in the whole workspace but the job environment variables can only be accessed in the steps environment it has and if you create a new job that environment variables cannot be accessed. Same with the step environment variables which can only accessed in the steps only but when you create a new job that environment variables cannot be accessed
+
+<!-- very important REREAD THIS TOPIC -->
+
+In the reusable workflow in same repostory:
+
+1. have to repo setting -> actions -> general-> Action permission and allow all actions and reusable workflows and save
+
+In the reusable workflow between two repos: Which is localed in "document/github-actions-course-example-e2e" YOU need to know 2 things:
+
+1. the 2 repos must be either private or public
+1. in order the workflow call to happen there need to :
+   a) to go to the user setting and create a secret token
+   b) then store that secret token in secrets in the repo setting
+   c) also have to repo setting -> actions -> general-> Access to allow the repo to be accessed by other repo when we call the workflow_call
