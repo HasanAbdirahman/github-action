@@ -5,7 +5,7 @@ jobs:
   deploy:
     uses: ./.github/workflows/18-1-reusable-workflows.yaml
     with:
-      target_directory: dummy-dir
+      target-directory: dummy-dir
 
   e2e-tests:
     # <owner>/<repo>/<.github/workflows>/<yaml file name>.<version can be tag or branch>
