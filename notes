@@ -21,4 +21,6 @@ In the reusable workflow between two repos: Which is localed in "document/github
    b) then store that secret token in secrets in the repo setting
    c) also have to repo setting -> actions -> general-> Access to allow the repo to be accessed by other repo when we call the workflow_call
 
-adding concurrency to check and make sure no 2 workflows runs at the same time and if it more than 2, the earlier will be stopped so that the latest workflow will run when the first workflow is complete"
+adding workflow concurrency checks and make sures that no 2 workflows runs at the same time. if there are more than 2 workflows are being run, the earlier workflow will be stopped so that the latest workflow will run when the first workflow is complete
+
+There is a job concurrency
