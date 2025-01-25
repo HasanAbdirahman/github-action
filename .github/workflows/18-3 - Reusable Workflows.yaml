@@ -1,0 +1,24 @@
+name: 18 - 3 - Reusable Workflows
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    uses: ./.github/workflows/18-1-reusable-workflows.yaml
+    with:
+      target_directory: dummy-dir
+
+  e2e-tests:
+    # <owner>/<repo>/<.github/workflows>/<yaml file name>.<version can be tag or branch>
+    uses: HasanAbdirahman/github-actions-course-example-e2e/.github/workflows/e2e.yaml@main
+    needs: deploy
+    secrets:
+      access_token: ${{ secrets.GH_TOKEN }}
+  print-outputs:
+    runs-on: ubuntu-latest
+    outputs:
+      build-status: ${{needs.deploy.outputs.build-status}}
+    steps:
+      - name: Print outputs
+        run: |
+          echo "Build status: ${{needs.deploy.outputs.build-status}}"
+          echo "URL: ${{needs.deploy.outputs.url}}"
