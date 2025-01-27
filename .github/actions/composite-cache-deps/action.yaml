@@ -27,6 +27,6 @@ runs:
 
     - name: Install Dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci
+      run: ${{inputs.target-env == 'dev' && 'npm ci' || 'npm ci --omit-dependency'}}
       shell: bash
       working-directory: ${{ inputs.working-dir }}
