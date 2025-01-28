@@ -1,7 +1,24 @@
 name: 17 - 2 - Custom Actions - JS
-run-name: 17 - 2 - Custom Actions - JS
+run-name: 17 - 2 - Custom Actions - JS | BB -${{inputs.base-branch}} - TB -  ${{inputs.target-branch}} - WD - {{inputs.working-dir}}
 on:
   workflow_dispatch:
+    inputs:
+      base-branch:
+        type: string
+        default: main
+      target-branch:
+        type: string
+        default: update-dependencies
+      working-dir:
+        type: string
+        default: 04-using-actions/react-app
+      debug:
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   run-name:
@@ -10,3 +27,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Node and NPM Dependencies
         uses: ./.github/actions/js-dependency-update
+        with:
+          base-branch: ${{ inputs.base-branch }}
+          head-branch: ${{ inputs.target-branch }}
+          working-dir: ${{ inputs.working-dir }}
+          gh_token: ${{secrets.GITHUB_TOKEN}}
+          debug: ${{ inputs.debug }}
