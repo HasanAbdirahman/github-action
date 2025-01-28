@@ -5,7 +5,7 @@ on:
     inputs:
       url:
         type: string
-        default: "https://google.com/"
+        default: "https://www.google.com/"
 
 jobs:
   ping-url:
