@@ -3,16 +3,20 @@ description: Ping URL until maximum trials have exceeded. If result is not 200 u
 
 inputs:
   url:
-    type: string
     description: URL to ping.
     required: true
   max_trials:
-    required: false
+    description: Maximum number of trials until action fails.
     default: "10"
-    description: Maximum number of attempts to ping the URL.
+    required: false
   delay:
+    description: Delay in seconds between trials.
     default: "5"
-    description: Delay in seconds between each ping attempt.
+    required: false
+
+outputs:
+  url-reachable:
+    description: Whether the URL is reachable
 
 runs:
   using: docker

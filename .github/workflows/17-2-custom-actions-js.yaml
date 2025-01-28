@@ -1,5 +1,6 @@
 name: 17 - 2 - Custom Actions - JS
-run-name: 17 - 2 - Custom Actions - JS | BB -${{inputs.base-branch}} - TB -  ${{inputs.target-branch}} - WD - {{inputs.working-dir}}
+run-name: 17 - 2 - Custom Actions - JS | BB - ${{ inputs.base-branch }} TB - ${{ inputs.target-branch }} WD - ${{ inputs.working-dir }}
+
 on:
   workflow_dispatch:
     inputs:
@@ -11,7 +12,7 @@ on:
         default: update-dependencies
       working-dir:
         type: string
-        default: 04-using-actions/react-app
+        default: 14-using-actions/react-app
       debug:
         type: boolean
         default: false
@@ -21,15 +22,19 @@ permissions:
   pull-requests: write
 
 jobs:
-  run-name:
+  dependency-update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node and NPM Dependencies
+      - name: Check for dependency updates
+        id: update-deps
         uses: ./.github/actions/js-dependency-update
         with:
           base-branch: ${{ inputs.base-branch }}
           head-branch: ${{ inputs.target-branch }}
-          working-dir: ${{ inputs.working-dir }}
-          gh_token: ${{secrets.GITHUB_TOKEN}}
+          working-directory: ${{ inputs.working-dir }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
           debug: ${{ inputs.debug }}
+      - name: Print custom action output
+        run: |
+          echo "Updates available: ${{ steps.update-deps.outputs.updates-available }}"
